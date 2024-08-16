@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {margin: 0; padding: 0;}
+        @font-face {
+            font-family: 'HSSaemaul-Regular';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSSaemaul-Regular.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body {
+            font-family: 'HSSaemaul-Regular';
+            padding: 20px;
+            background-color: #ffeebe;
+            color: #7c3901;
+        }
+        .con {
+            margin: 0 auto;
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            background-color: #eeb485;
+            padding: 20px;
+            box-sizing: border-box;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(126, 53, 5, 0.5);
+        }
+        .con h3 {
+            font-size: 2em;
+            font-weight: normal;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .con #t1 {
+            margin: 0 auto;
+        }
+        .con #t1 tr {
+            display: flex;
+            justify-content: space-between;
+        }
+        .con #t1 tr th {
+            padding-right: 10px;
+            padding-bottom: 20px;
+        }
+        .con #t1 tr td input {
+            border: 1px solid #7c3901;
+            background-color: #ffeebe;
+            height: 20px;
+            padding: 3px;
+            border-radius: 10px;
+        }
+        .con #t1 tr:nth-child(4) input:hover {
+            background-color: #7c3901;
+        }
+        .con #list input {
+            border: 1px solid #7c3901;
+            background-color: #ffeebe;
+            height: 20px;
+            padding: 3px;
+            border-radius: 10px;
+            margin-right: 5px;
+            margin-top: 10px;
+        }
+        .con #list * {
+            font-family: 'HSSaemaul-Regular';
+        }
+    </style>
+
+    <script>
+        let cnt = 1;
+        function a(){
+            let writer = f.writer.value;
+            let pwd = f.pwd.value;
+            let content = f.content.value;
+            let el = mkDiv (writer, pwd, content);
+            let list = document.getElementById("list");
+            list.appendChild(el);
+        }
+
+        function mkDiv(writer, pwd, content){
+            let newDiv = document.createElement("div");
+            newDiv.id = "d_" + cnt++;
+            newDiv.pwd = pwd;
+            let html = "";
+            html += "작성자 : " +writer+ "<br/>";
+            html += "내용 : "+content+"<br/>";
+            html += "<input type = 'button' value = '수정'>";
+            html += "<input type = 'button' value = '삭제'>"; //html 위 4개를 아래 innerHTML에 넣어줌.
+            newDiv.innerHTML = html;
+            return newDiv; //받아온 내용 return
+        }
+    </script>
+</head>
+
+<body>
+    <div class="con">
+        <h3>🌰방명록🌰</h3>
+        <form name = "f">
+            <table id = "t1">
+                <tr>
+                    <th> 작성자</th>
+                    <td><input type = "text" name = "writer" id = "writer"></td>
+                </tr>
+                <tr>
+                    <th> 글 비밀번호</th>
+                    <td><input type = "password" name = "pwd" id = "pwd"></td>
+                </tr>
+                <tr>
+                    <th> 내용</th>
+                    <td><input type = "text" name = "content" id = "content"></td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td><input style="font-family: 'HSSaemaul-Regular'" type = "button" name = "작성" value = " 작성 " onclick="a()"></td>
+                </tr>
+            </table>
+        </form>
+
+        <div id = "list">  
+
+        </div>
+    </div>
+</body>
+</html>
